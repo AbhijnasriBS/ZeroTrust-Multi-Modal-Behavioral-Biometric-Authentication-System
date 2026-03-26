@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://www.google.com/reCAPTCHA/api.js" async defer></script>
+
+    <title>USer Login</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.css ">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+    <link href="./css/nv.d3.css" rel="stylesheet" type="text/css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+    <style type="">
+        body { background-color: rgb(221, 217, 220); } font-family: 'Quicksand', sans-serif; /* form starting stylings -------------------------------
+        */ .group { position:relative; margin-bottom:45px; } input { font-size:18px; padding:10px 10px 10px 5px; display:block; width:380px; height:60px; border:none; border-bottom:2px solid white; background:rgba(66,139,202,.8); } input:focus { outline:none;
+        color: black;font-family: 'Lato',sans-serif;background:transparent;} /* LABEL ======================================= */ label { font-family: 'Quicksand', sans-serif; color:white; font-size:32px; font-weight:normal; position:absolute; pointer-events:none;
+        left:12%; top:10px; transition:.8s ease all; } /* active state */ input:focus ~ label, input:valid ~ label { top:-20px; font-size:20px; color:#2a6496; } a:hover{ text-decoration: none; } /* BOTTOM BARS ================================= */ .bar
+        { position:relative; display:block; width:380px; } .bar:before, .bar:after { content:''; height:2px; width:0; bottom:0px; position:absolute; background:#2a6496; transition:0.5s ease all; } .bar:before { left:50%; } .bar:after { right:50%; } /*
+        active state */ input:focus ~ .bar:before, input:focus ~ .bar:after { width:50%; } /* HIGHLIGHTER ================================== */ .highlight { position:absolute; height:60%; width:100px; top:25%; left:0; pointer-events:none; opacity:0.9;
+        } /* active state */ input:focus ~ .highlight { animation:inputHighlighter 0.5s ease; } /* ANIMATIONS ================ */ @keyframes inputHighlighter { from { background:#2a6496; } to { width:0; background:transparent; } } /* active state */ input:focus
+        ~ label, input:valid ~ label { top:-40%; left: auto; font-size:20px; font-weight: bold; color:#2a6496; } }
+
+    </style>
+
+</head>
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+        -moz-font-smoothing: antialiased;
+        -o-font-smoothing: antialiased;
+        font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+    }
+
+    body {
+        font-family: "Roboto", Helvetica, Arial, sans-serif;
+        font-weight: 100;
+        font-size: 12px;
+        line-height: 30px;
+        color: #777;
+        background: #4CAF50;
+    }
+
+    .button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    .button:hover {
+        opacity: 0.8;
+    }
+
+    .cancelbtn {
+        width: auto;
+        padding: 10px 18px;
+        background-color: #f44336;
+    }
+
+    .rebtn {
+        width: auto;
+        padding: 10px 18px;
+        background-color: #003366;
+    }
+
+    .reb1tn {
+        width: auto;
+        padding: 10px 18px;
+        background-color: #40e0d0;
+    }
+
+    .container {
+        max-width: 400px;
+        width: 10%;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    #contact input[type="text"],
+    #contact input[type="email"],
+    #contact input[type="tel"],
+    #contact input[type="url"],
+    #contact textarea,
+    #contact button[type="submit"] {
+        font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
+    }
+
+    #contact {
+        background: #F9F9F9;
+        padding: 25px;
+        margin: 150px 0;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+
+    #contact h3 {
+        display: block;
+        font-size: 30px;
+        font-weight: 300;
+        margin-bottom: 10px;
+    }
+
+    #contact h4 {
+        margin: 5px 0 15px;
+        display: block;
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+    fieldset {
+        border: medium none !important;
+        margin: 0 0 10px;
+        min-width: 100%;
+        padding: 0;
+        width: 100%;
+    }
+
+    #contact input[type="text"],
+    #contact input[type="email"],
+    #contact input[type="tel"],
+    #contact input[type="url"],
+    #contact textarea {
+        width: 100%;
+        border: 1px solid #ccc;
+        background: #FFF;
+        margin: 0 0 5px;
+        padding: 10px;
+    }
+
+    #contact input[type="text"]:hover,
+    #contact input[type="email"]:hover,
+    #contact input[type="tel"]:hover,
+    #contact input[type="url"]:hover,
+    #contact textarea:hover {
+        -webkit-transition: border-color 0.3s ease-in-out;
+        -moz-transition: border-color 0.3s ease-in-out;
+        transition: border-color 0.3s ease-in-out;
+        border: 1px solid #aaa;
+    }
+
+    #contact textarea {
+        height: 100px;
+        max-width: 100%;
+        resize: none;
+    }
+
+    #contact button[type="submit"] {
+        cursor: pointer;
+        width: 100%;
+        border: none;
+        background: #4CAF50;
+        color: #FFF;
+        margin: 0 0 5px;
+        padding: 10px;
+        font-size: 15px;
+    }
+
+    #contact button[type="submit"]:hover {
+        background: #43A047;
+        -webkit-transition: background 0.3s ease-in-out;
+        -moz-transition: background 0.3s ease-in-out;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    #contact button[type="submit"]:active {
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .copyright {
+        text-align: center;
+    }
+
+    #contact input:focus,
+    #contact textarea:focus {
+        outline: 0;
+        border: 1px solid #aaa;
+    }
+
+    ::-webkit-input-placeholder {
+        color: #888;
+    }
+
+    :-moz-placeholder {
+        color: #888;
+    }
+
+    ::-moz-placeholder {
+        color: #888;
+    }
+
+    :-ms-input-placeholder {
+        color: #888;
+    }
+</style>
+
+</html>
+
+
+
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Credit - Loan &amp; Credit Company HTML Template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="./img/core-img/new.ico">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body>
+    <script type="text/javascript" src="./js/trialkeystroke.js"></script>
+    <script type="text/javascript" src="./js/lib/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="./js/lib/table2csv.js" type="text/javascript"></script>
+    <script src="./js/lib/table2csv.min.js" type="text/javascript"></script>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <!-- Top Header Area -->
+        <div class="top-header-area">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12 d-flex justify-content-between">
+                        <!-- Logo Area -->
+                        <div class="logo">
+                            <a href="{{'/home'}}">Powered by <img src="./img/core-img/logo.png" alt="" width="100"
+                                    height="80"></a>
+                        </div>
+
+                        <!-- Top Contact Info -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navbar Area -->
+        <div class="credit-main-menu" id="sticker">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="creditNav">
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="{{'/home'}}">Home</a></li>
+                                    <li><a href="{{'/about'}}">About Us</a></li>
+
+                                    <li><a href="{{'/post'}}">Blog</a></li>
+                                    <li><a href="{{'/contact'}}">Contact</a></li>
+                                </ul>
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+
+                        <!-- Contact -->
+                        <div class="contact">
+                            <a href="#">xyzBank</a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+
+    <!-- ##### News Area End ##### -->
+
+    <!-- ##### Newsletter Area Start ###### -->
+    <div class="container">
+        <form id="contact" action="/clientlogin" method="post">
+            <h3>Client Login</h3>
+            <fieldset>
+                <input placeholder="UserName" type="text" tabindex="1" name="Client_name" required autofocus>
+                <script>
+                    function testJS() {
+                        var b = document.getElementById('Client_name').value,
+                            url = 'http://127.0.0.1:4990/clientlogin' + encodeURIComponent(b);
+
+                        document.location.href = url;
+                    }
+                </script>
+            </fieldset>
+            <fieldset>
+                <input placeholder="Enter your password" type="password" tabindex="1" name="Client_pass" required autofocus>
+            </fieldset>
+            <fieldset>
+                <center><button type="submit" class="button">Login</button></center>
+                <!--<button name="submit" type="submit" id="contact-submit1" data-submit="...Sending">Submit</button>-->
+            </fieldset>
+            <div class="container" style="background-color:#f1f1f1">
+                <a href="{{'/home'}}" button type="button" class="cancelbtn" style="float: left;">Cancel</a>
+                <a href="{{'/userregis'}}" button type="button" class="rebtn" style="float: right;"
+                    text-color="color: white;">If not registered, click here</a>
+
+            </div>
+        </form>
+    </div>
+
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area section-padding-100-0">
+        <div class="container">
+            <div class="row">
+
+
+
+            </div>
+        </div>
+
+        <!-- Copywrite Area -->
+        <div class="copywrite-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="copywrite-content d-flex flex-wrap justify-content-between align-items-center">
+                            <!-- Footer Logo -->
+                            <a href="index.html" class="footer-logo">Powered by <img src="./img/core-img/logo.png"
+                                    width="100" height="80" alt=""></a>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area Start ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js-->
+
+    <script src="./js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="./js/bootstrap/popper.min.js"></script>
+    <script src="./js/bootstrap/bootstrap.min.js"></script>
+    <script src="./js/plugins/plugins.js"></script>
+    <script src="./js/active.js"></script>
+    <br>
+
+    <!--
+    <script>
+        let options = {
+            "separator": ",",
+            "newline": "\n",
+            "quoteFields": true,
+            "excludeColumns": "",
+            "excludeRows": "",
+            "trimContent": true,
+            "filename": "table.csv",
+            "appendTo": ""
+        }
+
+        var sy = new Keystroke();
+        sy.listen("emirare");
+
+       // if (document.getElementById("emirare").value == ".tie5Roanl") {
+        var data1 = {
+            labels: [],
+            datasets: [{
+                label: "UU",
+                fillColor: "rgba(255,127,3,.1)",
+                strokeColor: "rgba(255,127,3,1)",
+                pointColor: "rgba(255,127,3,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: []
+            }, {
+                label: "UD",
+                fillColor: "rgba(118,255,3,.1)",
+                strokeColor: "rgba(118,255,3,1)",
+                pointColor: "rgba(118,255,3,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: []
+            }, {
+                label: "DU",
+                fillColor: "rgba(119,119,255,.1)",
+                strokeColor: "rgba(119,119,255,1)",
+                pointColor: "rgba(119,119,255,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: []
+            }, {
+                label: "DD",
+                fillColor: "rgba(149,117,205,.1)",
+                strokeColor: "rgba(149,117,20j5,1)",
+                pointColor: "rgba(149,117,205,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: []
+            }]
+        };
+        //}
+
+        $("#emirare").keyup(function (event) {
+            if (event.which == 13) {
+                if (document.getElementById("emirare").value == ".tie5Roanl") {
+                    sy.populate_1();
+                    for (var i = 0; i < sy.digraphUUTimes.length; i++) {
+                        data1.labels.push(sy.digraphDDTimes[i].character + "(" + sy.digraphDDTimes[i].weight + ")");
+                        data1.datasets[0].data.push(sy.digraphUUTimes[i].duration);
+                        data1.datasets[1].data.push(sy.digraphUDTimes[i].duration);
+                        data1.datasets[2].data.push(sy.digraphDUTimes[i].duration);
+                        data1.datasets[3].data.push(sy.digraphDDTimes[i].duration);
+                    };
+
+                    var dataout1 = data1.datasets[1].data; //ud -
+                    var dataout2 = data1.datasets[3].data; //dd
+                    var holdout = [];
+                    var j = 0;
+                    for (var i = 0; i < sy.digraphUUTimes.length; i++) {
+                        j = ((sy.digraphUDTimes[i].duration - sy.digraphDDTimes[i].duration) / 1000).toFixed(4);
+                        holdout.push(j);
+                        dataout1[i] = (dataout1[i] / 1000).toFixed(4);
+                        dataout2[i] = (dataout2[i] / 1000).toFixed(4);
+                    };
+
+                    var tablearea = document.getElementById('tab');
+                    var table = document.createElement('table');
+                    for (var i = 1; i < 2; i++) {
+                        var tr = document.createElement('tr');
+
+                        var td1 = document.createElement('td');
+                        var td2 = document.createElement('td');
+                        var td3 = document.createElement('td');
+                        var td4 = document.createElement('td');
+                        var td5 = document.createElement('td');
+                        var td6 = document.createElement('td');
+                        var td7 = document.createElement('td');
+                        var td8 = document.createElement('td');
+                        var td9 = document.createElement('td');
+                        var td10 = document.createElement('td');
+                        var td11 = document.createElement('td');
+                        var td12 = document.createElement('td');
+                        var td13 = document.createElement('td');
+                        var td14 = document.createElement('td');
+                        var td15 = document.createElement('td');
+                        var td16 = document.createElement('td');
+                        var td17 = document.createElement('td');
+                        var td18 = document.createElement('td');
+                        var td19 = document.createElement('td');
+                        var td20 = document.createElement('td');
+                        var td21 = document.createElement('td');
+                        var td22 = document.createElement('td');
+                        var td23 = document.createElement('td');
+                        var td24 = document.createElement('td');
+                        var td25 = document.createElement('td');
+                        var td26 = document.createElement('td');
+                        var td27 = document.createElement('td');
+                        var td28 = document.createElement('td');
+                        var td29 = document.createElement('td');
+                        var td30 = document.createElement('td');
+                        var td31 = document.createElement('td');
+                        var td32 = document.createElement('td');
+                        var td33 = document.createElement('td');
+
+                        var text1 = document.createTextNode(document.getElementById("username").value);
+                        var text2 = document.createTextNode(1);
+                        var text3 = document.createTextNode(1);
+                        var text4 = document.createTextNode(holdout[0]);
+                        var text5 = document.createTextNode(dataout1[0]);
+                        var text6 = document.createTextNode(dataout2[0]);
+                        var text7 = document.createTextNode(holdout[1]);
+                        var text8 = document.createTextNode(dataout1[1]);
+                        var text9 = document.createTextNode(dataout2[1]);
+                        var text10 = document.createTextNode(holdout[2]);
+                        var text11 = document.createTextNode(dataout1[2]);
+                        var text12 = document.createTextNode(dataout2[2]);
+                        var text13 = document.createTextNode(holdout[3]);
+                        var text14 = document.createTextNode(dataout1[3]);
+                        var text15 = document.createTextNode(dataout2[3]);
+                        var text16 = document.createTextNode(holdout[4]);
+                        var text17 = document.createTextNode(dataout1[4]);
+                        var text18 = document.createTextNode(dataout2[4]);
+                        var text19 = document.createTextNode(holdout[5]);
+                        var text20 = document.createTextNode(dataout1[5]);
+                        var text21 = document.createTextNode(dataout2[5]);
+                        var text22 = document.createTextNode(holdout[6]);
+                        var text23 = document.createTextNode(dataout1[6]);
+                        var text24 = document.createTextNode(dataout2[6]);
+                        var text25 = document.createTextNode(holdout[7]);
+                        var text26 = document.createTextNode(dataout1[7]);
+                        var text27 = document.createTextNode(dataout2[7]);
+                        var text28 = document.createTextNode(holdout[8]);
+                        var text29 = document.createTextNode(dataout1[8]);
+                        var text30 = document.createTextNode(dataout2[8]);
+                        var text31 = document.createTextNode(holdout[9]);
+                        var text32 = document.createTextNode(dataout1[9]);
+                        var text33 = document.createTextNode(dataout2[9]);
+
+                        td1.appendChild(text1);
+                        td2.appendChild(text2);
+                        td3.appendChild(text3);
+                        td4.appendChild(text4);
+                        td5.appendChild(text5);
+                        td6.appendChild(text6);
+                        td7.appendChild(text7);
+                        td8.appendChild(text8);
+                        td9.appendChild(text9);
+                        td10.appendChild(text10);
+                        td11.appendChild(text11);
+                        td12.appendChild(text12);
+                        td13.appendChild(text13);
+                        td14.appendChild(text14);
+                        td15.appendChild(text15);
+                        td16.appendChild(text16);
+                        td17.appendChild(text17);
+                        td18.appendChild(text18);
+                        td19.appendChild(text19);
+                        td20.appendChild(text20);
+                        td21.appendChild(text21);
+                        td22.appendChild(text22);
+                        td23.appendChild(text23);
+                        td24.appendChild(text24);
+                        td25.appendChild(text25);
+                        td26.appendChild(text26);
+                        td27.appendChild(text27);
+                        td28.appendChild(text28);
+                        td29.appendChild(text29);
+                        td30.appendChild(text30);
+                        td31.appendChild(text31);
+                        td32.appendChild(text32);
+                        td33.appendChild(text33);
+
+                        tr.appendChild(td1);
+                        tr.appendChild(td2);
+                        tr.appendChild(td3);
+                        tr.appendChild(td4);
+                        tr.appendChild(td5);
+                        tr.appendChild(td6);
+                        tr.appendChild(td7);
+                        tr.appendChild(td8);
+                        tr.appendChild(td9);
+                        tr.appendChild(td10);
+                        tr.appendChild(td11);
+                        tr.appendChild(td12);
+                        tr.appendChild(td13);
+                        tr.appendChild(td14);
+                        tr.appendChild(td15);
+                        tr.appendChild(td16);
+                        tr.appendChild(td17);
+                        tr.appendChild(td18);
+                        tr.appendChild(td19);
+                        tr.appendChild(td20);
+                        tr.appendChild(td21);
+                        tr.appendChild(td22);
+                        tr.appendChild(td23);
+                        tr.appendChild(td24);
+                        tr.appendChild(td25);
+                        tr.appendChild(td26);
+                        tr.appendChild(td27);
+                        tr.appendChild(td28);
+                        tr.appendChild(td29);
+                        tr.appendChild(td30);
+                        tr.appendChild(td31);
+                        tr.appendChild(td32);
+                        tr.appendChild(td33);
+
+                        table.appendChild(tr);
+                    }
+                    tablearea.appendChild(table);
+
+                    $("#execute").show();
+                    $("#tab").show();
+
+                    dataout1.length = 0;
+                    dataout2.length = 0;
+                    holdout.length = 0;
+                    sy.raw.length = 0;
+                    sy.pure.length = 0;
+                    sy.all_letters.length = 0;
+                    data1.labels.length = 0;
+                    elem.data.length = 0;
+                    data1.labels.length = 0;
+                    data1.datasets.length = 0;
+                    uu.length = 0;
+                    ud.length = 0;
+                    du.length = 0;
+                    dd.length = 0;
+                    datavalue.length = 0;
+                    tickvalue.length = 0;
+                }
+            }
+
+        });
+    </script>
+    -->
+</body>
+
+</html>

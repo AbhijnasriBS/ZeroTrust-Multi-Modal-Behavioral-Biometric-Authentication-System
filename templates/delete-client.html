@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://www.google.com/reCAPTCHA/api.js" async defer></script>
+</head>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: 100;
+  font-size: 12px;
+  line-height: 30px;
+  color: #777;
+  background: #4CAF50;
+}
+.button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 10%;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+.rebtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #003366;
+}
+
+.reb1tn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #40e0d0;
+}
+
+.container {
+  max-width: 40px;
+  width: 10%;
+  margin: 0 auto;
+  position: relative;
+}
+
+#contact input[type="text"],
+#contact input[type="email"],
+#contact input[type="tel"],
+#contact input[type="url"],
+#contact textarea,
+#contact button[type="submit"] {
+  font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
+}
+
+#contact {
+  background: #F9F9F9;
+  padding: 25px;
+  margin: 100px 0;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#contact h3 {
+  display: block;
+  font-size: 30px;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+#contact h4 {
+  margin: 5px 0 15px;
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+fieldset {
+  border: medium none !important;
+  margin: 0 0 10px;
+  min-width: 100%;
+  padding: 0;
+  width: 100%;
+}
+
+#contact input[type="text"],
+#contact input[type="email"],
+#contact input[type="tel"],
+#contact input[type="url"],
+#contact textarea {
+  width: 25%;
+  border: 1px solid #ccc;
+  background: #FFF;
+  margin: 0 0 5px;
+  padding: 10px;
+}
+
+#contact input[type="text"]:hover,
+#contact input[type="email"]:hover,
+#contact input[type="tel"]:hover,
+#contact input[type="url"]:hover,
+#contact textarea:hover {
+  -webkit-transition: border-color 0.3s ease-in-out;
+  -moz-transition: border-color 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out;
+  border: 1px solid #aaa;
+}
+
+#contact textarea {
+  height: 10px;
+  max-width: 10%;
+  resize: none;
+}
+
+#contact button[type="submit"] {
+  cursor: pointer;
+  width: 10%;
+  border: none;
+  background: #4CAF50;
+  color: #FFF;
+  margin: 0 0 5px;
+  padding: 10px;
+  font-size: 15px;
+}
+
+#contact button[type="submit"]:hover {
+  background: #43A047;
+  -webkit-transition: background 0.3s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#contact button[type="submit"]:active {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.copyright {
+  text-align: center;
+}
+
+#contact input:focus,
+#contact textarea:focus {
+  outline: 0;
+  border: 1px solid #aaa;
+}
+
+::-webkit-input-placeholder {
+  color: #888;
+}
+
+:-moz-placeholder {
+  color: #888;
+}
+
+::-moz-placeholder {
+  color: #888;
+}
+
+:-ms-input-placeholder {
+  color: #888;
+}
+</style>
+</html>
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Favicon -->
+    <link rel="icon" href="./img/core-img/favicon.ico">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <!-- Top Header Area -->
+        <div class="top-header-area">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12 d-flex justify-content-between">
+                        <!-- Logo Area -->
+                        <div class="logo">
+<a href="index.html" class="footer-logo">Powered by <img src="./img/core-img/logo.png"
+                                    width="100" height="80" alt=""></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navbar Area -->
+        <div class="credit-main-menu" id="sticker">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="creditNav">
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="{{'/admin_login'}}">Home Page</a></li>
+                                    <li><a href="{{'/view_clients'}}">View Clients</a></li>
+                                    <li><a href="{{'/manage_clients'}}">Manage Client details</a></li>
+                                    <li><a href="{{'/delete_clients'}}">Modify Clients</a></li>
+                                    <li><a href="{{'/admin_log_files'}}">Log Files</a></li>
+                                    <li><a href="{{'/home'}}">Log Out</a></li>
+                                </ul>
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+
+                        <!-- Contact
+                        <div class="contact">
+                            <a href="#">xyzBank</a>
+                        </div>
+                        -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### About Area Start ###### -->
+    <section class="about-area section-padding-100-0">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-6">
+                    <div class="about-content mb-100">
+                        <!-- Section Heading -->
+                        <div class="section-heading">
+                            <div class="line"></div>
+
+
+                            <h4>Admin deleting setup: </h4>
+
+                        </div>
+                        <h6 class="mb-4"></h6>
+                        <p class="mb-0"></p>
+                    </div>
+                </div>
+                <!--
+                <div class="col-12 col-md-6">
+                    <div class="about-thumbnail mb-100">
+                        <img src="./img/bg-img/14.jpg" alt="">
+                    </div>
+                </div>
+                -->
+            </div>
+        </div>
+
+        <body>
+
+                <div class="container">
+  <form id="contact" action="/enter_delete_client" method="post">
+    <h3>Delete Client</h3>
+    <fieldset>
+      <input placeholder="Client name to be deleted" type="text" tabindex="1" name="Client_name" required autofocus>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Client Account number" type="text" tabindex="5" name="Client_account" required>
+    </fieldset>
+      <fieldset>
+      <input placeholder="Enter Client Phone number" type="text" tabindex="5" name="Client_pno" required>
+    </fieldset>
+    <fieldset>
+      <center><button type="submit" class="button">Enter</button></center>
+        <!--<button name="submit" type="submit" id="contact-submit1" data-submit="...Sending">Submit</button>-->
+    </fieldset>
+          <div class="container" style="background-color:#f1f1f1">
+
+  </div>
+  </form>
+</div>
+
+
+        </body>
+
+
+
+
+
+    </section>
+    <!-- ##### About Area End ###### -->
+
+    <!-- Copywrite Area -->
+    <div class="copywrite-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="copywrite-content d-flex flex-wrap justify-content-between align-items-center">
+                        <!-- Footer Logo -->
+                        <a href="index.html" class="footer-logo"><img src="" alt=""></a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </footer>
+    <!-- ##### Footer Area Start ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="./js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="./js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="./js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="./js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="./js/active.js"></script>
+</body>
+
+</html>

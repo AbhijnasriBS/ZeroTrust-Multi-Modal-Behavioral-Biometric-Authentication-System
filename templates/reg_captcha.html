@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Specify Captcha</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css ">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+    <link href="static/css/nv.d3.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="static/js/lib/d3.v3.js"></script>
+    <script type="text/javascript" src="static/js/lib/nv.d3.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <style type="">
+        body { background-color: rgb(46, 15, 117); background-image: url("1.jpg") } font-family: 'Quicksand', sans-serif; /* form starting stylings -------------------------------
+        */ .group { position:relative; margin-bottom:45px; } input { font-size:18px; padding:10px 10px 10px 5px; display:block; width:380px; height:60px; border:none; border-bottom:2px solid white; background:rgba(66,139,202,.8); } input:focus { outline:none;
+        color: white;font-family: 'Lato',sans-serif;background:transparent;} /* LABEL ======================================= */ label { font-family: 'Quicksand', sans-serif; color:white; font-size:32px; font-weight:normal; position:absolute; pointer-events:none;
+        left:12%; top:10px; transition:.8s ease all; } /* active state */ input:focus ~ label, input:valid ~ label { top:-20px; font-size:20px; color:#2a6496; } a:hover{ text-decoration: none; } /* BOTTOM BARS ================================= */ .bar
+        { position:relative; display:block; width:380px; } .bar:before, .bar:after { content:''; height:2px; width:0; bottom:0px; position:absolute; background:#2a6496; transition:0.5s ease all; } .bar:before { left:50%; } .bar:after { right:50%; } /*
+        active state */ input:focus ~ .bar:before, input:focus ~ .bar:after { width:50%; } /* HIGHLIGHTER ================================== */ .highlight { position:absolute; height:60%; width:100px; top:25%; left:0; pointer-events:none; opacity:0.9;
+        } /* active state */ input:focus ~ .highlight { animation:inputHighlighter 0.5s ease; } /* ANIMATIONS ================ */ @keyframes inputHighlighter { from { background:#2a6496; } to { width:0; background:transparent; } } /* active state */ input:focus
+        ~ label, input:valid ~ label { top:-40%; left: auto; font-size:20px; font-weight: bold; color:#2a6496; } #refresh span{ color:white; font-size:30px; position:absolute; left:65%;top:30%; }
+
+    </style>
+</head>
+
+<body>
+    <script type="text/javascript" src="static/js/keystroke.specific.js"></script>
+    <script type="text/javascript" src="static/js/lib/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="static/js/lib/table2csv.js" type="text/javascript"></script>
+    <script src="static/js/lib/table2csv.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="static/js/lib/Chart.js"></script>
+    <br><br>
+    <div class="container" style="position:relative;">
+        <div class="row-fluid">
+            <div class="col-lg-6 col-lg-offset-4">
+                <form method="post">
+                    <div class="group">
+                        <input id="emirare" type="text" class="" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <a href="" id="refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="false"
+                                style=""></span> </a>
+                        <label class="text-center">Type & ".tie5Roanl" & hit Enter !!</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container" id="content">
+        <div class="row-fluid" style="background:rgba(255,255,255,0); border-radius:4px; height:350px;">
+            <h2
+                style="color:white;font-family: 'Quicksand', sans-serif;letter-spacing:-3px;font-size:40px;font-weight:normal;margin-left:10px;">
+                For registration start typing ".tie5Roanl" 20 times. GO !!!!<br>
+            </h2>
+        </div>
+    </div>
+    <div class="container" style="padding:0px;width:auto; background:white;" id="chart">
+        <div class="row-fluid clearfix" style="background:rgba(255,255,255,1); ">
+            <svg id="svg" style='height:400px;width:1000px;' />
+            <div style="float:right;position:relative;top:-300px;margin-right:20px;">
+                <p style="font-family:'Quicksand' ,sans-serif;font-size:12px;font-weight:bold;" class="text-center">
+                    Legend for the plots<br><br> U denotes Keyup<br>D denotes Keydown<br> UU = U(second) - U(first)<br>
+                    UD = U(second) - D(first)<br> DU = D(second) - U(first)<br> DD = D(second) - D(first)<br> All times
+                    are in milliseconds<br> No. of occurences
+                    is given in brackets
+
+                </p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div id="output1" class="container" style="padding:0px;width:auto; background:white;">
+        <div class="row-fluid clearfix" style="background:rgba(255,255,255,1); ">
+            <section id="content1">
+                <div align="left">
+                    <div class="w3-container">
+                        <div class="w3-light-grey">
+                            <div id="myBar" class="w3-container w3-green" style="height:24px;width:0% ">
+                            </div>
+                        </div>
+                        <br>
+                        <p id="myP">Added <span id="demo">0</span> of 20 prints.</p>
+                        <form action="/reg_captcha">
+                            <button id="button1" class="w3-button w3-green" onclick="">Continue</button>
+                        </form>
+                    </div>
+                </div>
+                <hr />
+                <h2 style="text-align:center;">Result</h2>
+                <div align="center">
+                    <textarea id="output2" style='height:300px;width:800px;'></textarea>
+                </div>
+            </section>
+        </div>
+    </div>
+    <br>
+    <div align="center">
+        <button id="execute" onclick="$('#tab').table2csv(options)">download this rn</button>
+
+    </div>
+    <br>
+    <div align="center">
+        <table id="tab">
+        </table>
+    </div>
+
+    <script>
+        var width = 0;
+
+        function move() {
+            var elem = document.getElementById("myBar");
+
+            if (width < 100) {
+                if (document.getElementById("emirare").value == ".tie5Roanl") {
+                    width = width + 5;
+                    elem.style.width = width + '%';
+                    var num = width * (1 / 5);
+                    num = num.toFixed(0)
+                    document.getElementById("demo").innerHTML = num;
+                }
+            }
+        }
+
+        let options = {
+            "separator": ",",
+            "newline": "\n",
+            "quoteFields": true,
+            "excludeColumns": "",
+            "excludeRows": "",
+            "trimContent": true,
+            "filename": "table.csv",
+            "appendTo": ""
+        }
+
+        $("#refresh").hide();
+        $("#svg").hide();
+        $("#chart").hide();
+        $("#output1").hide();
+        $("#tab").hide();
+        $("#execute").hide();
+        $("#button1").hide();
+
+        // tHe refresh button
+        $("#refresh").click(function (event) {
+            event.preventDefault();
+            $("#refresh").hide();
+            $("#svg").hide();
+            $("#chart").hide();
+            $("#output1").hide();
+            $("#execute").hide();
+            $("#button1").hide();
+
+            $("#svg").empty();
+            document.getElementById("emirare").value = "";
+            sy = new Keystroke();
+            sy.listen("emirare");
+
+            if (myLineChart != undefined)
+                myLineChart.destroy();
+
+            data1.datasets.forEach(function (elem) {
+                elem.data = [];
+            });
+
+            data1.labels = [];
+
+            $("#content").show();
+        });
+
+        $("#emirare").focus(function () {
+            $("#refresh").show();
+
+        });
+        $("#emirare").focusout(function () {
+            $("#refresh").hide();
+
+        });
+        var sy = new Keystroke();
+        sy.listen("emirare");
+
+        var myLineChart;
+
+        //if (document.getElementById("emirare").value == ".tie5Roanl") {
+        var data1 = {
+            labels: [],
+            datasets: [{
+                label: "UU",
+                fillColor: "rgba(255,127,3,.1)",
+                strokeColor: "rgba(255,127,3,1)",
+                pointColor: "rgba(255,127,3,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: []
+            }, {
+                label: "UD",
+                fillColor: "rgba(118,255,3,.1)",
+                strokeColor: "rgba(118,255,3,1)",
+                pointColor: "rgba(118,255,3,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: []
+            }, {
+                label: "DU",
+                fillColor: "rgba(119,119,255,.1)",
+                strokeColor: "rgba(119,119,255,1)",
+                pointColor: "rgba(119,119,255,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: []
+            }, {
+                label: "DD",
+                fillColor: "rgba(149,117,205,.1)",
+                strokeColor: "rgba(149,117,20j5,1)",
+                pointColor: "rgba(149,117,205,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: []
+            }]
+        };
+        //}
+
+        $("#emirare").keyup(function (event) {
+            if (event.which == 13) {
+                //if (document.getElementById("emirare").value == ".tie5Roanl") {
+                sy.populate_1();
+                move();
+
+                $("#content").hide();
+                for (var i = 0; i < sy.digraphUUTimes.length; i++) {
+                    data1.labels.push(sy.digraphDDTimes[i].character + "(" + sy.digraphDDTimes[i].weight +
+                        ")");
+                    data1.datasets[0].data.push(sy.digraphUUTimes[i].duration);
+                    data1.datasets[1].data.push(sy.digraphUDTimes[i].duration);
+                    data1.datasets[2].data.push(sy.digraphDUTimes[i].duration);
+                    data1.datasets[3].data.push(sy.digraphDDTimes[i].duration);
+                };
+
+                var dataout1 = data1.datasets[1].data; //ud -
+                var dataout2 = data1.datasets[3].data; //dd
+                var holdout = [];
+                var j = 0;
+                for (var i = 0; i < sy.digraphUUTimes.length; i++) {
+                    j = ((sy.digraphUDTimes[i].duration - sy.digraphDDTimes[i].duration) / 1000).toFixed(4);
+                    holdout.push(j);
+                    dataout1[i] = (dataout1[i] / 1000).toFixed(4);
+                    dataout2[i] = (dataout2[i] / 1000).toFixed(4);
+                };
+                var textarea1 = document.getElementById("output2");
+                textarea1.value += ("UD values") + ("\n") +
+                    dataout1.join(", ") + ("\n") + ("DD values") + ("\n") + dataout2.join(", ") + ("\n") + (
+                        "Hold time") + ("\n") + holdout.join(", ") + ("\n");
+
+                if (myLineChart != undefined)
+                    myLineChart.destroy();
+
+                $("#chart").show();
+                $("#svg").show();
+                $("#output1").show();
+                $("#tab").show();
+
+                if (document.getElementById("demo").innerHTML == 20) {
+                $("#execute").show();
+                $("#button1").show();
+                }
+
+                function digraph_values() {
+                    var uu = [];
+                    var ud = [];
+                    var du = [];
+                    var dd = [];
+
+                    for (var i = 0; i < sy.digraphUUTimes.length; i++) {
+                        uu.push({
+                            x: i,
+                            y: sy.digraphUUTimes[i].duration
+                        });
+                        ud.push({
+                            x: i,
+                            y: sy.digraphUDTimes[i].duration
+                        });
+                        du.push({
+                            x: i,
+                            y: sy.digraphDUTimes[i].duration
+                        });
+                        dd.push({
+                            x: i,
+                            y: sy.digraphDDTimes[i].duration
+                        });
+                    };
+                    return [{
+                        key: "UU",
+                        values: uu,
+                        color: "#ff7f0e"
+                    }, {
+                        key: "UD",
+                        values: ud,
+                        color: "#76ff03"
+                    }, {
+                        key: "DU",
+                        values: du,
+                        color: "#7777ff"
+                    }, {
+                        key: "DD",
+                        values: dd,
+                        color: "rgba(149,117,205,1)"
+                    }];
+
+                }
+                var datavalue = [];
+                var tickvalue = [];
+                for (var i = 0; i < sy.digraphUUTimes.length; i++) {
+                    tickvalue.push(i);
+                    datavalue.push(sy.digraphDDTimes[i].character + "(" + sy.digraphDDTimes[i].weight +
+                        ")");
+                };
+
+                nv.addGraph(function () {
+                    var chart = nv.models.lineChart();
+
+                    chart.xAxis
+                        .axisLabel("Di-Graphs")
+                        .tickValues(tickvalue)
+                        .tickFormat(function (d) {
+                            return datavalue[d];
+                        });
+
+                    chart.yAxis
+                        .axisLabel("Time in milli-seconds")
+                        .axisLabelDistance(50)
+                        .tickFormat(d3.format("d"));
+
+                    chart.margin({
+                        left: 50,
+                        right: 20
+                    });
+
+                    d3.select("svg")
+                        .datum(digraph_values())
+                        .transition().duration(500).call(chart);
+
+                    nv.utils.windowResize(
+                        function () {
+                            chart.update();
+                        }
+                    );
+                    return chart;
+                });
+
+                if (document.getElementById("emirare").value == ".tie5Roanl") {
+
+                    var tablearea = document.getElementById('tab');
+                    var table = document.createElement('table');
+                    for (var i = 1; i < 2; i++) {
+                        var tr = document.createElement('tr');
+
+                        var td1 = document.createElement('td');
+                        var td2 = document.createElement('td');
+                        var td3 = document.createElement('td');
+                        var td4 = document.createElement('td');
+                        var td5 = document.createElement('td');
+                        var td6 = document.createElement('td');
+                        var td7 = document.createElement('td');
+                        var td8 = document.createElement('td');
+                        var td9 = document.createElement('td');
+                        var td10 = document.createElement('td');
+                        var td11 = document.createElement('td');
+                        var td12 = document.createElement('td');
+                        var td13 = document.createElement('td');
+                        var td14 = document.createElement('td');
+                        var td15 = document.createElement('td');
+                        var td16 = document.createElement('td');
+                        var td17 = document.createElement('td');
+                        var td18 = document.createElement('td');
+                        var td19 = document.createElement('td');
+                        var td20 = document.createElement('td');
+                        var td21 = document.createElement('td');
+                        var td22 = document.createElement('td');
+                        var td23 = document.createElement('td');
+                        var td24 = document.createElement('td');
+                        var td25 = document.createElement('td');
+                        var td26 = document.createElement('td');
+                        var td27 = document.createElement('td');
+                        var td28 = document.createElement('td');
+                        var td29 = document.createElement('td');
+                        var td30 = document.createElement('td');
+                        var td31 = document.createElement('td');
+                        var td32 = document.createElement('td');
+                        var td33 = document.createElement('td');
+
+                        var text1 = document.createTextNode("username");
+                        var text2 = document.createTextNode(1);
+                        var text3 = document.createTextNode(1);
+                        var text4 = document.createTextNode(holdout[0]);
+                        var text5 = document.createTextNode(dataout1[0]);
+                        var text6 = document.createTextNode(dataout2[0]);
+                        var text7 = document.createTextNode(holdout[1]);
+                        var text8 = document.createTextNode(dataout1[1]);
+                        var text9 = document.createTextNode(dataout2[1]);
+                        var text10 = document.createTextNode(holdout[2]);
+                        var text11 = document.createTextNode(dataout1[2]);
+                        var text12 = document.createTextNode(dataout2[2]);
+                        var text13 = document.createTextNode(holdout[3]);
+                        var text14 = document.createTextNode(dataout1[3]);
+                        var text15 = document.createTextNode(dataout2[3]);
+                        var text16 = document.createTextNode(holdout[4]);
+                        var text17 = document.createTextNode(dataout1[4]);
+                        var text18 = document.createTextNode(dataout2[4]);
+                        var text19 = document.createTextNode(holdout[5]);
+                        var text20 = document.createTextNode(dataout1[5]);
+                        var text21 = document.createTextNode(dataout2[5]);
+                        var text22 = document.createTextNode(holdout[6]);
+                        var text23 = document.createTextNode(dataout1[6]);
+                        var text24 = document.createTextNode(dataout2[6]);
+                        var text25 = document.createTextNode(holdout[7]);
+                        var text26 = document.createTextNode(dataout1[7]);
+                        var text27 = document.createTextNode(dataout2[7]);
+                        var text28 = document.createTextNode(holdout[8]);
+                        var text29 = document.createTextNode(dataout1[8]);
+                        var text30 = document.createTextNode(dataout2[8]);
+                        var text31 = document.createTextNode(holdout[9]);
+                        var text32 = document.createTextNode(dataout1[9]);
+                        var text33 = document.createTextNode(dataout2[9]);
+
+
+                        td1.appendChild(text1);
+                        td2.appendChild(text2);
+                        td3.appendChild(text3);
+                        td4.appendChild(text4);
+                        td5.appendChild(text5);
+                        td6.appendChild(text6);
+                        td7.appendChild(text7);
+                        td8.appendChild(text8);
+                        td9.appendChild(text9);
+                        td10.appendChild(text10);
+                        td11.appendChild(text11);
+                        td12.appendChild(text12);
+                        td13.appendChild(text13);
+                        td14.appendChild(text14);
+                        td15.appendChild(text15);
+                        td16.appendChild(text16);
+                        td17.appendChild(text17);
+                        td18.appendChild(text18);
+                        td19.appendChild(text19);
+                        td20.appendChild(text20);
+                        td21.appendChild(text21);
+                        td22.appendChild(text22);
+                        td23.appendChild(text23);
+                        td24.appendChild(text24);
+                        td25.appendChild(text25);
+                        td26.appendChild(text26);
+                        td27.appendChild(text27);
+                        td28.appendChild(text28);
+                        td29.appendChild(text29);
+                        td30.appendChild(text30);
+                        td31.appendChild(text31);
+                        td32.appendChild(text32);
+                        td33.appendChild(text33);
+
+                        tr.appendChild(td1);
+                        tr.appendChild(td2);
+                        tr.appendChild(td3);
+                        tr.appendChild(td4);
+                        tr.appendChild(td5);
+                        tr.appendChild(td6);
+                        tr.appendChild(td7);
+                        tr.appendChild(td8);
+                        tr.appendChild(td9);
+                        tr.appendChild(td10);
+                        tr.appendChild(td11);
+                        tr.appendChild(td12);
+                        tr.appendChild(td13);
+                        tr.appendChild(td14);
+                        tr.appendChild(td15);
+                        tr.appendChild(td16);
+                        tr.appendChild(td17);
+                        tr.appendChild(td18);
+                        tr.appendChild(td19);
+                        tr.appendChild(td20);
+                        tr.appendChild(td21);
+                        tr.appendChild(td22);
+                        tr.appendChild(td23);
+                        tr.appendChild(td24);
+                        tr.appendChild(td25);
+                        tr.appendChild(td26);
+                        tr.appendChild(td27);
+                        tr.appendChild(td28);
+                        tr.appendChild(td29);
+                        tr.appendChild(td30);
+                        tr.appendChild(td31);
+                        tr.appendChild(td32);
+                        tr.appendChild(td33);
+
+
+
+                        table.appendChild(tr);
+                    }
+                    tablearea.appendChild(table);
+                }
+
+
+                dataout1.length = 0;
+                dataout2.length = 0;
+                holdout.length = 0;
+                sy.raw.length = 0;
+                sy.pure.length = 0;
+                sy.all_letters.length = 0;
+                data1.labels.length = 0;
+                elem.data.length = 0;
+                data1.labels.length = 0;
+                data1.datasets.length = 0;
+                uu.length = 0;
+                ud.length = 0;
+                du.length = 0;
+                dd.length = 0;
+                datavalue.length = 0;
+                tickvalue.length = 0;
+                /*}else {
+
+
+                    var textarea2 = document.getElementById("output2");
+                    textarea2.value = ("ENTER VALID CAPTCHA");
+                    $("#chart").hide();
+                    $("#svg").hide();
+                    $("#output1").show();
+                    $("#execute").hide();
+                    $("#tab").hide();*/
+                //}
+            }
+
+
+        });
+    </script>
+
+
+</body>
+
+</html>

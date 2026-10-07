@@ -1,0 +1,5 @@
+{
+    "python.defaultInterpreterPath": "C:/Users/abhij/miniconda3/envs/biometric-env/python.exe",
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "python.terminal.activateEnvironment": true
+}
